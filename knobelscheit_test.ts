@@ -26,12 +26,12 @@ Deno.test("Knobelscheit: flip entfernt mehrere Kachel ", () => {
 Deno.test("Knobelscheit: flip auf bereits umgeklappte Kachel gibt false ", () => {
   const brett = new Knobelscheit();
   brett.flip([5]);
-  assertFalse(brett.getUpTiles(), [5]);
+  assertFalse(brett.flip([5]));
 });
 
 Deno.test("Knobelscheit: isComplete wenn alle Kacheln flipped sind", () => {
   const brett = new Knobelscheit();
-  brett.flip([1,2,3,4,6,7,8,9]);
+  brett.flip([1,2,3,4,5,6,7,8,9]);
   assert(brett.isComplete());
 });
 
@@ -50,7 +50,7 @@ Deno.test("Knobelscheit: getCombinations enthält 3 4", () => {
 Deno.test("Knobelscheit: getCombinations enthält 1 2 4", () => {
   const brett = new Knobelscheit();
   const kombis = brett.getCombinations(7);
-  assert(kombis.some((k) => k.includes(1) && k.includes(2)) && k.inlcudes(4));
+  assert(kombis.some((k) => k.includes(1) && k.includes(2) && k.includes(4)));
 });
 
 Deno.test("Knobelscheit: nach flip 7 fehlt 7 in getCombinations 7", () => {
@@ -65,6 +65,3 @@ Deno.test("Knobelscheit: hasValidMoves false wenn alle kacheln weg", () => {
   brett.flip([1, 2, 3, 4, 6, 7, 8, 9]);
   assertFalse(brett.hasValidMoves(7));
 });
-
-
-
